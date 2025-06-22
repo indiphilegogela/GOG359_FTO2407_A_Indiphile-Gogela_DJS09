@@ -1,8 +1,16 @@
-// Number Types mini-challenge 10 10.2
-// Write a function that will only accept numbers and attend to
-// all TypeScript weakness flags.
-// : number
-const reviewTotalDisplay = document.querySelector("#reviews");
+const returningUserDisplay = document.querySelector("#returning-user") as HTMLSpanElement;
+const userDisplay = document.querySelector("#user") as HTMLSpanElement;
+
+const returningUser: boolean = true;
+const userName: string = "Indiphile";
+
+if (returningUser) {
+  returningUserDisplay.textContent = "back ";
+}
+
+userDisplay.textContent = userName;
+
+const reviewTotalDisplay = document.querySelector("#reviews") as HTMLElement;
 
 const reviews = [
   {
@@ -24,3 +32,5 @@ const reviews = [
     date: "27-03-2021",
   },
 ];
+
+reviewTotalDisplay.textContent = `Total Reviews: ${reviews.length}`;
