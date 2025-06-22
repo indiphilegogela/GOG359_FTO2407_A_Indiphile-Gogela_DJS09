@@ -1,3 +1,10 @@
+interface Review {
+  name: string;
+  stars: number;
+  loyaltyUser: boolean;
+  date: string;
+}
+
 const returningUserDisplay = document.querySelector("#returning-user") as HTMLSpanElement;
 const userDisplay = document.querySelector("#user") as HTMLSpanElement;
 
@@ -12,7 +19,7 @@ userDisplay.textContent = userName;
 
 const reviewTotalDisplay = document.querySelector("#reviews") as HTMLElement;
 
-const reviews = [
+const reviews: Review[] = [
   {
     name: "Sheia",
     stars: 5,
@@ -34,3 +41,26 @@ const reviews = [
 ];
 
 reviewTotalDisplay.textContent = `Total Reviews: ${reviews.length}`;
+
+function renderReviews(reviews: Review[]): void {
+  const reviewsHtml = reviews
+    .map(review => {
+      const loyaltyStatus = review.loyaltyUser ? "⭐ Loyal Customer" : "";
+      const stars = '⭐'.repeat(review.stars);
+
+      return `
+        <div class="review">
+          <h6>${review.name} ${loyaltyStatus}</h6>
+          <p>Stars: ${stars}</p>
+          <p>Date: ${review.date}</p>
+        </div>
+      `;
+    })
+    .join("");
+
+  reviewTotalDisplay.innerHTML = reviewsHtml;
+}
+
+renderReviews(reviews);
+
+
